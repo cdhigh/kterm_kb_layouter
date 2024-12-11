@@ -13,36 +13,38 @@ from tkinter.messagebox import *
 from tkinter import filedialog  #.askopenfilename()
 from tkinter import simpledialog  #.askstring()
 
-__Version__ = 'v1.0 2024-12-10'
+__Version__ = 'v1.0'
 
 ESC = {'image': 'esc', 'action': 'escape'}
-BK = lambda w: {'image': 'back', 'action': 'backspace', 'width': w * 100}
-TAB = lambda w: {'image': 'tab', 'action': 'tab', 'width': w * 100}
-CAPSLK = lambda w: {'image': 'capslk', 'action': 'modifier:caps', 'width': w * 100}
-SHIFT = lambda w: {'image': 'shift', 'action': 'modifier:shift', 'width': w * 100}
+BK = lambda w: {'display': '←', 'action': 'backspace', 'width': w * 100} #'image': 'back'
+TAB = lambda w: {'display': '⇥', 'action': 'tab', 'width': w * 100} #'image': 'tab'
+CAPSLK = lambda w: {'display': '⇪', 'action': 'modifier:caps', 'width': w * 100} #'image': 'capslk'
+SHIFT = lambda w: {'display': '⇧', 'action': 'modifier:shift', 'width': w * 100} #'image': 'shift'
 A15 = lambda a: {'display': a, 'width': 1500}
 A30 = lambda a: {'display': a, 'width': 3000}
-MOD1 = {'image': 'sym1', 'action': 'modifier:mod1'}
-MOD2 = {'image': 'sym2', 'action': 'modifier:mod2'}
+MOD1 = {'display': '⇄', 'action': 'modifier:mod1'} #'image': 'sym1'
+MOD2 = {'display': '↭', 'action': 'modifier:mod2'} #'image': 'sym2'
 CTRL = lambda w: {'image': 'ctrl', 'action': 'modifier:ctrl', 'width': w * 100}
 ALT = {'image': 'alt', 'action': 'modifier:alt'}
 SPACE = lambda w: {'display': ' ', 'action': 'space', 'width': w * 100}
-ENTER = lambda w: {'image': 'return', 'action': 'return', 'width': w * 100}
-UP = {'image': 'up', 'action': 'up'}
-DOWN = {'image': 'down', 'action': 'down'}
-LEFT = {'image': 'left', 'action': 'left'}
-RIGHT = {'image': 'right', 'action': 'right'}
+ENTER = lambda w: {'display': '⤶', 'action': 'return', 'width': w * 100} #'image': 'return'
+UP = {'display': '▲', 'action': 'up'} #'image': 'up'
+DOWN = {'display': '▼', 'action': 'down'} #'image': 'down'
+LEFT = {'display': '◀', 'action': 'left'} #'image': 'left'
+RIGHT = {'display': '▶', 'action': 'right'} #'image': 'right'
 F = lambda n: {'image': f'f{n}', 'action': f'f{n}'}
 HOME = {'image': 'home', 'action': 'home'}
 END = {'image': 'end', 'action': 'end'}
-PGUP = {'image': 'pgup', 'action': 'pageup'}
-PGDOWN = {'image': 'pgdn', 'action': 'pagedown'}
+PGUP = {'display': '⤉', 'action': 'pageup'} #'image': 'pgup'
+PGDOWN = {'display': '⤈', 'action': 'pagedown'} #'image': 'pgdn'
+DEL = {'display': '␡', 'action': 'delete'} #'image': 'del'
 
 #所有支持的action按键信息
 ACTION_LIST = [ESC, BK(10), TAB(10), CAPSLK(10), SHIFT(10), MOD1, MOD2, CTRL(10), ALT, SPACE(10), 
     ENTER(10), UP, DOWN, LEFT, RIGHT, HOME, END, PGUP, PGDOWN]
 
 #几个预置的布局
+#新增布局时注意每一行的按键宽度总和必须是1000的倍数
 PROFILE_5R11C = {
     '_meta': {'default_width': 2000},
     'normal': [
@@ -75,7 +77,7 @@ PROFILE_5R11C = {
     ],
 }
 
-#几个预置的布局
+#防Kindle原生键盘
 PROFILE_4R10C = {
     '_meta': {'default_width': 1000},
     'normal': [
@@ -160,7 +162,7 @@ PNG_UNICODE_MAP = {
     'sym1.png': '⇄',
     'sym2.png': '⎌',
     'del.png': 'Del',
-    'back.png': '⌫',
+    'back.png': '⬅',
     'f1.png': 'F1',
     'f2.png': 'F2',
     'f3.png': 'F3',
@@ -199,7 +201,7 @@ class Application_ui(Frame):
     def __init__(self, master):
         super().__init__(master)
         self.master.title('Kterm Keyboard Layouter')
-        self.master.geometry('921x504')
+        self.master.geometry('921x534')
         self.icondata = """
             R0lGODlhgACAAPcAABoaGv///xsbGxcEBSshIh8YGRUPEBsMDykbHhMLDR4aGx8bHBYH
             Cx8IDyYZHRcUFSIXGx4RFi4cJBkSFR0WGR8YGxURE1YuQx0FEx4SGhwZGx0aHBQKERYO
@@ -297,58 +299,58 @@ class Application_ui(Frame):
         self.cmdDeleteProfile = Button(self.top, text='Delete Profile', textvariable=self.cmdDeleteProfileVar, command=self.cmdDeleteProfile_Cmd, style='TcmdDeleteProfile.TButton')
         self.cmdDeleteProfile.setText = lambda x: self.cmdDeleteProfileVar.set(x)
         self.cmdDeleteProfile.text = lambda : self.cmdDeleteProfileVar.get()
-        self.cmdDeleteProfile.place(relx=0.591, rely=0.032, relwidth=0.183, relheight=0.065)
+        self.cmdDeleteProfile.place(relx=0.591, rely=0.03, relwidth=0.183, relheight=0.062)
 
         self.topRadioVar = StringVar()
         self.style.configure('ToptMod2.TRadiobutton', font=('Arial',12))
         self.optMod2 = Radiobutton(self.top, text='Mod2', value='optMod2', variable=self.topRadioVar, command=self.optMod2_Cmd, style='ToptMod2.TRadiobutton')
         self.optMod2.setValue = lambda x: self.topRadioVar.set('optMod2' if x else '')
         self.optMod2.value = lambda : 1 if self.topRadioVar.get() == 'optMod2' else 0
-        self.optMod2.place(relx=0.452, rely=0.143, relwidth=0.131, relheight=0.065)
+        self.optMod2.place(relx=0.452, rely=0.135, relwidth=0.131, relheight=0.062)
 
         self.style.configure('ToptMod1.TRadiobutton', font=('Arial',12))
         self.optMod1 = Radiobutton(self.top, text='Mod1', value='optMod1', variable=self.topRadioVar, command=self.optMod1_Cmd, style='ToptMod1.TRadiobutton')
         self.optMod1.setValue = lambda x: self.topRadioVar.set('optMod1' if x else '')
         self.optMod1.value = lambda : 1 if self.topRadioVar.get() == 'optMod1' else 0
-        self.optMod1.place(relx=0.307, rely=0.143, relwidth=0.131, relheight=0.065)
+        self.optMod1.place(relx=0.307, rely=0.135, relwidth=0.131, relheight=0.062)
 
         self.style.configure('ToptCaps.TRadiobutton', font=('Arial',12))
         self.optCaps = Radiobutton(self.top, text='Caps', value='optCaps', variable=self.topRadioVar, command=self.optCaps_Cmd, style='ToptCaps.TRadiobutton')
         self.optCaps.setValue = lambda x: self.topRadioVar.set('optCaps' if x else '')
         self.optCaps.value = lambda : 1 if self.topRadioVar.get() == 'optCaps' else 0
-        self.optCaps.place(relx=0.162, rely=0.143, relwidth=0.131, relheight=0.065)
+        self.optCaps.place(relx=0.162, rely=0.135, relwidth=0.131, relheight=0.062)
 
         self.style.configure('ToptNormal.TRadiobutton', font=('Arial',12))
         self.optNormal = Radiobutton(self.top, text='Normal', value='optNormal', variable=self.topRadioVar, command=self.optNormal_Cmd, style='ToptNormal.TRadiobutton')
         self.optNormal.setValue = lambda x: self.topRadioVar.set('optNormal' if x else '')
         self.optNormal.value = lambda : 1 if self.topRadioVar.get() == 'optNormal' else 0
         self.optNormal.setValue(1)
-        self.optNormal.place(relx=0.017, rely=0.143, relwidth=0.131, relheight=0.065)
+        self.optNormal.place(relx=0.017, rely=0.135, relwidth=0.131, relheight=0.062)
 
         self.cmdSaveXmlVar = StringVar(value='Save Xml')
         self.style.configure('TcmdSaveXml.TButton', font=('Arial',14))
         self.cmdSaveXml = Button(self.top, text='Save Xml', textvariable=self.cmdSaveXmlVar, command=self.cmdSaveXml_Cmd, style='TcmdSaveXml.TButton')
         self.cmdSaveXml.setText = lambda x: self.cmdSaveXmlVar.set(x)
         self.cmdSaveXml.text = lambda : self.cmdSaveXmlVar.get()
-        self.cmdSaveXml.place(relx=0.808, rely=0.032, relwidth=0.183, relheight=0.065)
+        self.cmdSaveXml.place(relx=0.808, rely=0.03, relwidth=0.183, relheight=0.062)
 
         self.cmdSaveProfileVar = StringVar(value='Save Profile')
         self.style.configure('TcmdSaveProfile.TButton', font=('Arial',14))
         self.cmdSaveProfile = Button(self.top, text='Save Profile', textvariable=self.cmdSaveProfileVar, command=self.cmdSaveProfile_Cmd, style='TcmdSaveProfile.TButton')
         self.cmdSaveProfile.setText = lambda x: self.cmdSaveProfileVar.set(x)
         self.cmdSaveProfile.text = lambda : self.cmdSaveProfileVar.get()
-        self.cmdSaveProfile.place(relx=0.374, rely=0.032, relwidth=0.183, relheight=0.065)
+        self.cmdSaveProfile.place(relx=0.374, rely=0.03, relwidth=0.183, relheight=0.062)
 
         self.cmbProfileList = ['',]
         self.cmbProfileVar = StringVar(value='')
         self.cmbProfile = Combobox(self.top, exportselection=0, state='readonly', textvariable=self.cmbProfileVar, values=self.cmbProfileList, font=('Arial',14))
         self.cmbProfile.setText = lambda x: self.cmbProfileVar.set(x)
         self.cmbProfile.text = lambda : self.cmbProfileVar.get()
-        self.cmbProfile.place(relx=0.13, rely=0.032, relwidth=0.218)
+        self.cmbProfile.place(relx=0.13, rely=0.03, relwidth=0.218)
         self.cmbProfile.bind('<<ComboboxSelected>>', self.cmbProfile_ComboboxSelected)
 
         self.canvas = Canvas(self.top, takefocus=1, bg='#FFE0C0')
-        self.canvas.place(relx=0.009, rely=0.238, relwidth=0.983, relheight=0.748)
+        self.canvas.place(relx=0.009, rely=0.225, relwidth=0.983, relheight=0.753)
         self.canvas.bind('<Button-1>', self.canvas_Button_1)
 
         self.lblProfileVar = StringVar(value='Profile')
@@ -356,7 +358,7 @@ class Application_ui(Frame):
         self.lblProfile = Label(self.top, text='Profile', textvariable=self.lblProfileVar, style='TlblProfile.TLabel')
         self.lblProfile.setText = lambda x: self.lblProfileVar.set(x)
         self.lblProfile.text = lambda : self.lblProfileVar.get()
-        self.lblProfile.place(relx=0.009, rely=0.032, relwidth=0.105, relheight=0.05)
+        self.lblProfile.place(relx=0.009, rely=0.03, relwidth=0.105, relheight=0.047)
 
 class Application(Application_ui):
     def __init__(self, master):
@@ -588,13 +590,15 @@ class Application(Application_ui):
 
         for nmRow, cpRow, m1Row, m2Row in zip(normal, caps, mod1, mod2):
             xmlRow = ET.SubElement(lay, 'row')
+            xmlKey = None
             for nmKey, cpKey, m1Key, m2Key in zip(nmRow, cpRow, m1Row, m2Row):
                 xmlKey = self.addXmlKeyDefaultNode(xmlRow, nmKey)
                 self.addXmlKeyCapsNode(xmlKey, nmKey, cpKey)
                 self.addXmlKeyMod1Node(xmlKey, nmKey, m1Key)
                 self.addXmlKeyMod2Node(xmlKey, nmKey, m2Key)
-            #每行最后一个key添加一个属性 fill="true"，避免一个难看的边框
-            xmlKey.set('fill', 'true')
+            #每行最后一个设置占满剩余空间，避免有的屏幕有剩余空间
+            if xmlKey:
+                xmlKey.set('fill', 'true')
 
         #保存文件
         if not event or not (event.state & 0x0004): #Ctrl键状态
@@ -622,7 +626,7 @@ class Application(Application_ui):
     def addXmlKeyDefaultNode(self, xmlRow, nmKey):
         width = nmKey.get('width', 1000)
         display = nmKey.get('display', '')
-        if (len(display) == 1) and ('a' <= display <= 'z'):
+        if (len(display) == 1) and display.islower():
             attrs = {'width': str(width), 'obey-caps': 'true'}
         else:
             attrs = {'width': str(width)}
@@ -740,6 +744,7 @@ class Application(Application_ui):
             self.cmbProfile.configure(values=self.cmbProfileList)
             self.cmbProfile.current(0)
             self.cmbProfile_ComboboxSelected()
+            name = self.cmbProfile.text()
             self.cmdDeleteProfile.configure(state='disable' if name in BUILTIN_PROFILES else 'normal')
             self.dirty = False
 

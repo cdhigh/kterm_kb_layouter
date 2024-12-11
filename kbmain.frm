@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form kbmain 
    Caption         =   "Kterm Keyboard Layouter"
-   ClientHeight    =   7560
+   ClientHeight    =   8010
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   13815
@@ -15,7 +15,7 @@ Begin VB.Form kbmain
       Strikethrough   =   0   'False
    EndProperty
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7560
+   ScaleHeight     =   8010
    ScaleWidth      =   13815
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
    Tag             =   "p@protocol=WM_DELETE_WINDOW"
@@ -131,9 +131,9 @@ Begin VB.Form kbmain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   5655
+      Height          =   6033
       Left            =   120
-      ScaleHeight     =   5595
+      ScaleHeight     =   5970
       ScaleWidth      =   13515
       TabIndex        =   0
       Top             =   1800
