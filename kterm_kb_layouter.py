@@ -21,6 +21,7 @@ TAB = lambda w: {'image': 'tab', 'action': 'tab', 'width': w * 100}
 CAPSLK = lambda w: {'image': 'capslk', 'action': 'modifier:caps', 'width': w * 100}
 SHIFT = lambda w: {'image': 'shift', 'action': 'modifier:shift', 'width': w * 100}
 A15 = lambda a: {'display': a, 'width': 1500}
+A30 = lambda a: {'display': a, 'width': 3000}
 MOD1 = {'image': 'sym1', 'action': 'modifier:mod1'}
 MOD2 = {'image': 'sym2', 'action': 'modifier:mod2'}
 CTRL = lambda w: {'image': 'ctrl', 'action': 'modifier:ctrl', 'width': w * 100}
@@ -43,38 +44,40 @@ ACTION_LIST = [ESC, BK(10), TAB(10), CAPSLK(10), SHIFT(10), MOD1, MOD2, CTRL(10)
 
 #几个预置的布局
 PROFILE_5R11C = {
+    '_meta': {'default_width': 2000},
     'normal': [
-        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(15)],
-        [A15('q'), 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '"'],
-        [CAPSLK(10), 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', A15('ç')],
-        [SHIFT(15), 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '?', '-'],
-        [MOD1, CTRL(10), '/', SPACE(30), MOD2, ',', '.', ENTER(25)],
+        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(30)],
+        [A30('q'), 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '"'],
+        [CAPSLK(20), 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', A30('ç')],
+        [SHIFT(30), 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '?', '-'],
+        [MOD1, CTRL(20), '/', SPACE(80), MOD2, ',', '.', ENTER(30)],
     ],
     'caps': [
-        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(15)],
-        [A15('Q'), 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', UP],
-        [CAPSLK(10), 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', A15('Ç')],
-        [SHIFT(15), 'Z', 'X', 'C', 'V', 'B', 'N', 'M', LEFT, RIGHT, DOWN],
-        [MOD1, CTRL(10), '/', SPACE(30), MOD2, ';', "'", ENTER(25)],
+        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(30)],
+        [A30('Q'), 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', UP],
+        [CAPSLK(20), 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', A30('Ç')],
+        [SHIFT(30), 'Z', 'X', 'C', 'V', 'B', 'N', 'M', LEFT, RIGHT, DOWN],
+        [MOD1, CTRL(20), '/', SPACE(80), MOD2, ';', "'", ENTER(30)],
     ],
     'mod1': [
-        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(15)],
-        [A15('!'), '@', '#', '$', '%', '^', '&', '*', '(', ')', ';'],
-        [CAPSLK(10), 'á', 'â', 'ã', 'à', 'é', 'ê', 'í', 'ó', 'ô', A15('õ')],
-        [SHIFT(15), 'ú', '[', ']', '=', '+', '-', '_', '*', ':', '?'],
-        [MOD1, CTRL(10), '\\', SPACE(30), MOD2, '/', "|", ENTER(25)],
+        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(30)],
+        [A30('!'), '@', '#', '$', '%', '^', '&', '*', '(', ')', ';'],
+        [CAPSLK(20), 'á', 'â', 'ã', 'à', 'é', 'ê', 'í', 'ó', 'ô', A30('õ')],
+        [SHIFT(30), 'ú', '[', ']', '=', '+', '-', '_', '*', ':', '?'],
+        [MOD1, CTRL(20), '\\', SPACE(80), MOD2, '/', "|", ENTER(30)],
     ],
     'mod2': [
-        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(15)],
-        [A15('~'), '@', '#', '$', '%', '^', '&', '*', '(', ')', ':'],
-        [CAPSLK(10), 'Á', 'Â', 'Ã', 'À', 'É', 'Ê', 'Í', 'Ó', 'Ô', A15('Õ')],
-        [SHIFT(15), 'Ú', '{', '}', '/', ';', '`', '+', '-', ',', '.'],
-        [MOD1, CTRL(10), '\\', SPACE(30), MOD2, '<', ">", ENTER(25)],
+        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', BK(20)],
+        [A30('~'), '@', '#', '$', '%', '^', '&', '*', '(', ')', ':'],
+        [CAPSLK(20), 'Á', 'Â', 'Ã', 'À', 'É', 'Ê', 'Í', 'Ó', 'Ô', A30('Õ')],
+        [SHIFT(30), 'Ú', '{', '}', '/', ';', '`', '+', '-', ',', '.'],
+        [MOD1, CTRL(20), '\\', SPACE(80), MOD2, '<', ">", ENTER(30)],
     ],
 }
 
 #几个预置的布局
 PROFILE_4R10C = {
+    '_meta': {'default_width': 1000},
     'normal': [
         ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
         [A15('a'), 's', 'd', 'f', 'g', 'h', 'j', 'k', A15('l')],
@@ -103,6 +106,7 @@ PROFILE_4R10C = {
 
 #Kterm自带的布局
 PROFILE_KERM = {
+    '_meta': {'default_width': 1000},
     'normal': [
         [ESC, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', BK(20)],
         [TAB(20), 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\'],
@@ -412,8 +416,9 @@ class Application(Application_ui):
         if not profile:
             return
 
-        _keyWidth = lambda k: 1000 if isinstance(k, str) else k.get('width', 1000)
-        for mode in profile: #normal/caps/mod1/mod2
+        defaultWidth = profile.get('_meta', {}).get('default_width', 1000)
+        _keyWidth = lambda k: defaultWidth if isinstance(k, str) else k.get('width', defaultWidth)
+        for mode in ['normal', 'caps', 'mod1', 'mod2']:
             self.layouts[mode] = []
             for rowIdx, keyRow in enumerate(profile[mode]):
                 row = []
@@ -588,9 +593,12 @@ class Application(Application_ui):
                 self.addXmlKeyCapsNode(xmlKey, nmKey, cpKey)
                 self.addXmlKeyMod1Node(xmlKey, nmKey, m1Key)
                 self.addXmlKeyMod2Node(xmlKey, nmKey, m2Key)
+            #每行最后一个key添加一个属性 fill="true"，避免一个难看的边框
+            xmlKey.set('fill', 'true')
 
         #保存文件
-        prettifyXml(kbRoot)
+        if not event or not (event.state & 0x0004): #Ctrl键状态
+            prettifyXml(kbRoot)
         kbXmlStr = ET.tostring(kbRoot, encoding='utf-8', xml_declaration=True).decode('utf-8')
         kb200XmlStr = kbXmlStr.replace('keyboard for 167 dpi kindles: kt, kt2, kt3', 'keyboard for 211 dpi kindles: pw1, pw2')
         kb200XmlStr = kb200XmlStr.replace('kt keyboard', 'kt keyboard 211')
@@ -613,8 +621,8 @@ class Application(Application_ui):
     #返回生成的 Key节点
     def addXmlKeyDefaultNode(self, xmlRow, nmKey):
         width = nmKey.get('width', 1000)
-        display = nmKey.get('display')
-        if 'a' <= display <= 'z':
+        display = nmKey.get('display', '')
+        if (len(display) == 1) and ('a' <= display <= 'z'):
             attrs = {'width': str(width), 'obey-caps': 'true'}
         else:
             attrs = {'width': str(width)}
