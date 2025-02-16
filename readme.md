@@ -1,5 +1,5 @@
 # Kterm keyboard layouter
-This is a keyboard designer for [Kterm](https://github.com/bfabiszewski/kterm), allowing you to visually modify the keyboard layout.
+This tool is a keyboard designer for [Kterm](https://github.com/bfabiszewski/kterm), enabling you to visually customize the keyboard layout.
 
 # Requirements
 * Python >= 3.8
